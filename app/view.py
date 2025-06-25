@@ -3,8 +3,22 @@ from flask import render_template
 
 @app.route('/')
 def homepage():
-    return render_template('index.html')
+    user = 'Gabriel'
+    age = 17
+    
+    context = {
+        'user':user,
+        'age':age
+    }
+    
+    return render_template('index.html', context=context)
 
-@app.route('/nova/')
+@app.route('/itsok')
 def novapagina():
-    return 'Outra views'
+    user = 'Gabriel'
+    
+    context = {
+        'user':user
+    }
+    
+    return render_template('itsok.html', context=context)
