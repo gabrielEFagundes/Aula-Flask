@@ -1,0 +1,6 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+from app.view import homepage
+from app.view import novapagina
