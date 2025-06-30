@@ -13,6 +13,7 @@ def homepage():
     
     return render_template('index.html', context=context)
 
+'''
 @app.route('/itsok')
 def novapagina():
     user = 'Gabriel'
@@ -22,3 +23,8 @@ def novapagina():
     }
     
     return render_template('itsok.html', context=context)
+'''
+
+@app.route('/contato/')
+def novapagina():
+    return 'Outra página'

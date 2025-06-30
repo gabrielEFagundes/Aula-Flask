@@ -11,3 +11,17 @@
 
 ### Instalar o SQLAlchemy e o Flask-Migrate
 > pip install Flask-SQLAlchemy Flask-Migrate
+
+### Executar o bando de dados no models
+> flask db init
+
+### Atualizar o BD após alterações
+> flask db migrate -m "mensagem"
+
+### Enviar essas atualizações para o BD
+> flask db upgrade
+
+***
+
+### Formulários em FLASK
+> pip install flask-WTF
