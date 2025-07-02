@@ -1,5 +1,6 @@
 from app import app
-from flask import render_template
+from flask import render_template, url_for, request
+from app.forms import ContatoForm
 
 @app.route('/')
 def homepage():
@@ -25,6 +26,19 @@ def novapagina():
     return render_template('itsok.html', context=context)
 '''
 
-@app.route('/contato/')
-def novapagina():
-    return 'Outra página'
+@app.route('/contato/', methods=['GET', 'POST'])
+def contato():
+    form = ContatoForm()
+    context = {}
+    
+    if request.method == 'GET':
+        pesquisa = request.args.get('pesquisa')
+        print('GET:', pesquisa)
+        context.update({'pesquisa':pesquisa})
+        
+    if request.method == 'POST':
+        pesquisa = request.form['pesquisa']
+        print('POST:', pesquisa)
+        context.update({'pesquisa':pesquisa})
+    
+    return render_template('contato.html', context=context)

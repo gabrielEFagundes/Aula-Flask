@@ -25,3 +25,6 @@
 
 ### Formulários em FLASK
 > pip install flask-WTF
+
+### Bilioteca para validar emails
+> pip install email_validator
