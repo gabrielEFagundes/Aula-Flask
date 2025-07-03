@@ -12,7 +12,21 @@
                 <h3>Envio de Contatos</h3>
             </div>
             <form action="" method="post" class="row mt-4">
-                {{form.csrf_token}}
+                {{form.csrf_token}} <!-- Oculta os dados de entrada do usuário -->
+
+                {{form.nome.label()}}
+                {{form.nome()}}
+
+                {{form.email.label()}}
+                {{form.email()}}
+
+                {{form.assunto.label()}}
+                {{form.assunto()}}
+
+                {{form.mensagem.label()}}
+                {{form.mensagem()}}
+
+                {{form.btnSubmit()}}
             </form>
         </div>
     </div>

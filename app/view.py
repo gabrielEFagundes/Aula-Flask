@@ -1,4 +1,4 @@
-from app import app
+from app import app, db
 from flask import render_template, url_for, request
 from app.forms import ContatoForm
 
@@ -31,14 +31,7 @@ def contato():
     form = ContatoForm()
     context = {}
     
-    if request.method == 'GET':
-        pesquisa = request.args.get('pesquisa')
-        print('GET:', pesquisa)
-        context.update({'pesquisa':pesquisa})
+    if form.validate_on_submit():
+        form.save()
         
-    if request.method == 'POST':
-        pesquisa = request.form['pesquisa']
-        print('POST:', pesquisa)
-        context.update({'pesquisa':pesquisa})
-    
-    return render_template('contato.html', context=context)
+    return render_template('contato.html', context=context, form=form)
