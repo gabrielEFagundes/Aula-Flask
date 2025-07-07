@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Projeto Flask </title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <div>
         <h3> Projeto Flask </h3>
         <h5> @senaisc </h5>
     </div>
     <div>
+        {% include 'nav.html' %}
+    </div>
+    <div>
         <p> Bem vindos a aula de Flask!!! </p>
         <p>Olá, {{context.user}}! Você tem {{context.age}} anos.</p>
-        <a href="{{url_for('contato')}}">Link para o contato</a>
-        <br>
-        <a href="{{url_for('contatoLista')}}">Link para a lista de contatos</a>
-        <br>
     </div>
-</body>
-</html>
+{% endblock %}

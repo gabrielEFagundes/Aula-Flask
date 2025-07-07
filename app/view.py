@@ -28,9 +28,13 @@ def contato():
 
 @app.route('/contato/lista/')
 def contatoLista():
-    dados = Contato.query.all()
-    print(dados)
+    if request.method == 'GET':
+        pesquisa = request.args.get('pesquisa', '')
+        
+    dados = Contato.query.order_by('nome')
+    if pesquisa != '':
+        dados = dados.filter_by(nome=pesquisa)
     
-    context = {}
+    context = {'dados':dados.all()}
     
     return render_template('contato_lista.html', context=context)

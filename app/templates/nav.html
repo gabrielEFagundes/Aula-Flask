@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <a href="/" class="btn btn-dark">Home</a>
+    <a href="{{url_for('contato')}}" class="btn btn-primary">Cadastrar Contato</a>
+    <a href="{{url_for('contatoLista')}}" class="btn btn-success">Lista de Contatos</a>
+
+{% endblock %}
