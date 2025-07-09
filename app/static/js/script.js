@@ -1,0 +1,1 @@
+console.log('Meu arquivo JS');
