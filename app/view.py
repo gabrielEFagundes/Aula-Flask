@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, request, redirect
-from app.forms import ContatoForm   
+from app.forms import ContatoForm
 from app.models import Contato
 
 @app.route('/')

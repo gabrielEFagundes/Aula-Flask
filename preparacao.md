@@ -28,3 +28,12 @@
 
 ### Bilioteca para validar emails
 > pip install email_validator
+
+### Segurança do banco de dados
+> pip install flask-dotenv
+
+### Senhas aleatórias
+> pip install flask-bcrypy
+
+### Validação de usuários
+> pip install flask-login
