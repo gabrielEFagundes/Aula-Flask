@@ -8,19 +8,22 @@
             <form action="" method="post" class="row mt-4 p-4 round border shadow">
                 {{form.csrf_token}} <!-- Oculta os dados de entrada do usuário -->
 
-                <!-- {{form.nome.label()}}
+                {{form.nome.label()}}
                 {{form.nome(class="form-control")}}
+
+                {{form.sobrenome.label()}}
+                {{form.sobrenome(class="form-control")}}
 
                 {{form.email.label()}}
                 {{form.email(class="form-control")}}
 
-                {{form.assunto.label()}}
-                {{form.assunto(class="form-control")}}
+                {{form.senha.label()}}
+                {{form.senha(class="form-control")}}
 
-                {{form.mensagem.label()}}
-                {{form.mensagem(class="form-control")}}
+                {{form.confirmacao_senha.label()}}
+                {{form.confirmacao_senha(class="form-control")}}
 
-                {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}} -->
+                {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}}
             </form>
         </div>
     </div>
