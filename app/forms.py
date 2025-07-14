@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+from flask_bcrypt import Bcrypt
 
 from app import db, bcrypt
 from app.models import Contato, User
@@ -23,9 +24,8 @@ class UserForm(FlaskForm):
             nome = self.nome.data,
             sobrenome = self.sobrenome.data,
             email = self.email.data,
-            senha = self.senha.data
+            senha = senha.decode('utf-8')
         )
-        
         db.session.add(user)
         db.session.commit()
         return user
