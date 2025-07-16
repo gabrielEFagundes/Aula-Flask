@@ -4,14 +4,14 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from flask_bcrypt import Bcrypt
 
 from app import db, bcrypt
-from app.models import Contato, User
+from app.models import Contato, User, Post
 
 class UserForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
     sobrenome = StringField('Sobrenome', validators=[DataRequired()])
     email = StringField('E-Mail', validators=[DataRequired(), Email()])
     senha = PasswordField('Senha', validators=[DataRequired()])
-    confirmacao_senha = PasswordField('Senha', validators=[DataRequired(), EqualTo('Senha')])
+    confirmacao_senha = PasswordField('Confirme a Senha', validators=[DataRequired(), EqualTo('senha')])
     btnSubmit = SubmitField('Cadastrar')
     
     def validate_email(self, email):
@@ -29,6 +29,24 @@ class UserForm(FlaskForm):
         db.session.add(user)
         db.session.commit()
         return user
+    
+class LoginForm(FlaskForm):
+    email = StringField('E-Mail', validators=[DataRequired(),Email()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    btnSubmit = SubmitField('Login')
+    
+    def login(self):
+        user = User.query.filter_by(email=self.email.data).first()
+        
+        if user:
+            if bcrypt.check_password_hash(user.senha, self.senha.data.encode('utf-8')):
+                return user
+            
+            else:
+                raise Exception('Senha incorreta! Por favor, tente novamente.')
+            
+        else:
+            raise Exception('Usuário não encontrado!')
 
 class ContatoForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
@@ -45,4 +63,17 @@ class ContatoForm(FlaskForm):
             mensagem = self.mensagem.data
         )
         db.session.add(contato)
+        db.session.commit()
+        
+class PostForm(FlaskForm):
+    mensagem = StringField('Mensagem', validators=[DataRequired()])
+    btnSubmit = SubmitField('Enviar')
+    
+    def save(self, user_id):
+        post = Post(
+            mensagem = self.message.data,
+            user_id = user_id
+        )
+        
+        db.session.add()
         db.session.commit()
