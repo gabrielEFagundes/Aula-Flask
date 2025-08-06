@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, url_for, request, redirect
 from app.forms import ContatoForm, UserForm, LoginForm, PostForm
-from app.models import Contato
+from app.models import Contato, Post
 from flask_login import login_user, logout_user, current_user
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,7 +66,7 @@ def logout():
     logout_user()
     return redirect(url_for('homepage'))
 
-@app.route('/post/novo')
+@app.route('/post/novo', methods=["GET", "POST"])
 def postNovo():
     form = PostForm()
     
@@ -75,3 +75,10 @@ def postNovo():
         return redirect(url_for('homepage'))
     
     return render_template('post_novo.html', form=form)
+
+@app.route('/post/lista/', methods=['GET','POST'])
+def postLista():
+    posts = Post.query.all()
+    print(current_user.posts)
+    
+    return render_template('post_lista.html', posts=posts)
