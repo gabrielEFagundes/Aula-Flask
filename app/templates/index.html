@@ -7,10 +7,6 @@
         <hr>
     </div>
     <div>
-        <h3> Projeto Flask </h3>
-        <h5> @senaisc </h5>
-    </div>
-    <div>
         {% if current_user.is_authenticated %}
         <span class="btn btn-primary">{{current_user.nome}} {{current_user.sobrenome}}</span>
         <a href="{{url_for('logout')}}" class="btn btn-danger">Sair</a>

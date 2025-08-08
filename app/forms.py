@@ -1,10 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from flask_bcrypt import Bcrypt
 
 from app import db, bcrypt
 from app.models import Contato, User, Post, PostComentarios
+from __init__ import os
+from werkzeug.utils import secure_filename
 
 class UserForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
@@ -67,9 +69,12 @@ class ContatoForm(FlaskForm):
         
 class PostForm(FlaskForm):
     mensagem = StringField('Mensagem', validators=[DataRequired()])
+    imagem = FileField('Imagem', validators=[DataRequired()])
     btnSubmit = SubmitField('Enviar')
     
     def save(self, user_id):
+        imagem = self.imagem.data
+        nome_seguro = secure_filename(imagem.filename)
         post = Post(
             mensagem = self.mensagem.data,
             user_id = user_id
