@@ -13,6 +13,8 @@
                 <h5>Mensagem:</h5>
                 <div class="col-12 border round p-4 shadow">
                     {{post.mensagem}}
+                    <hr>
+                    <img src="{{url_for('static', filename='data/post/{}'.format(post.imagem))}}" alt="">
                 </div>
             </div>
             <div class="col-12 mt-3">
@@ -21,6 +23,9 @@
                     
                     {{form.comentario.label}}
                     {{form.comentario(class="form-control")}}
+
+                    {{form.imagem.label()}}
+                    {{form.imagem(class="form-control")}}
 
                     {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}}
                 </form>

@@ -9,11 +9,14 @@
             <div class="row mt-4 text-center">
                 <h3>Novo Post</h3>
             </div>
-            <form action="" method="post" class="row mt-4 p-4 round border shadow">
+            <form action="" method="post" class="row mt-4 p-4 round border shadow" enctype="multipart/form-data">
                 {{form.csrf_token}} <!-- Oculta os dados de entrada do usuário -->
 
                 {{form.mensagem.label()}}
                 {{form.mensagem(class="form-control")}}
+                
+                {{form.imagem.label()}}
+                {{form.imagem(class="form-control")}}
 
                 {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}}
             </form>
